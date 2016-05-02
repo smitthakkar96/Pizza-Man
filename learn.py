@@ -81,7 +81,7 @@ def finish(message):
         session.flush()
         bot.reply_to(message,"Thank you sir your pizza will be delivered within 30 mins.")
     else:
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         bot.reply_to(message,"No problem " + message.from_user.first_name + " " + message.from_user.last_name + " we have cancelled your order. Would you like to order something else ?",reply_markup=getPizzaMarkUp())
 
 @bot.message_handler(regexp="keyboard")
@@ -113,7 +113,7 @@ def reciveContact(message):
     session.commit()
     bot.reply_to(message,"Thanks " + message.from_user.first_name + " " + message.from_user.last_name + "\n would you like to have a Pizza ?")
 
-@bot.message_handler(func = lambda message:message.text.lower() in ["i want pizza","can i have pizza ?","can i have pizza","pizza","order pizza","pizza","pizza list"])
+@bot.message_handler(func = lambda message:message.text.lower() in ["i want pizza","can i have pizza ?","can i have pizza","pizza","order pizza","pizza","pizza list"],commands=['order'])
 def order(message):
     markup = getPizzaMarkUp()
     bot.reply_to(message,"Please select your Pizza ?",reply_markup=markup)
