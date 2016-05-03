@@ -1,0 +1,3 @@
+[{"id":1, "name":"margarita", "image_url":"pizza/margarita.jpg", "description":"It tastes great when you eat it."},
+ {"id":2, "name":"cheese pizza", "image_url":"pizza/cheesePizza.jpg", "description":"It tastes great when you eat it."},
+ {"id":3, "name":"chicken pizza", "image_url":"pizza/chickenPizza.jpg", "description":"It tastes great when you eat it."}]
