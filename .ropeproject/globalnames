@@ -1,4 +1,6 @@
-€}q(U	connector]qUengineqaUmodels]q(UuserqUOrdersqUUserqUpizzaqUordersq	UPizzaq
+€}q(U	connector]qUengineqaUmodels]q(UuserqUOrdersqUUserqUPizzaqUordersq	Upizzaq
 eUexample]q(Ucommand_imageqUcommandsqUcommand_startqUcommand_text_hiqUcommand_defaultqUbotqU
-knownUsersqUcommand_long_textqUlistenerqUmsg_image_selectqUTOKENqUuserStepqUget_user_stepqU	hideBoardqUcommand_helpqUimageSelectqeUutil]q(UsmqUdbqUsessionqUmetadataq eUlearn]q!(Ugeolocationq"Uuser_idq#UreciveContactq$Ukeyboardq%hU
-geolocatorq&UreciveLocationq'hUsend_welcomeq(eu.
+knownUsersqUcommand_long_textqUlistenerqUmsg_image_selectqUTOKENqUuserStepqUget_user_stepqU	hideBoardqUcommand_helpqUimageSelectqeUutil]q(UsmqUdbqUsessionqUmetadataq eUlearn]q!(Ugeolocationq"Usend_welcomeq#Ufinishq$Ukeyboardq%Usend_image_and_confirmationq&Uuser_idq'h
+Upizza_text_listq(U
+geolocatorq)hUgetPizzaMarkUpq*U
+pizza_listq+Upizzasq,UreciveContactq-hUreciveLocationq.UpUglobal_nameq/Uorder_when_commandq0Uorderq1Uglobal_pizzaq2eu.

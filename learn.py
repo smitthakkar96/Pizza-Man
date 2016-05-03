@@ -2,6 +2,7 @@ import telebot
 from telebot import types
 from geopy.geocoders import Nominatim
 from models import *
+import unicodedata
 
 TOKEN = '168743027:AAEnNqtlAGIQ8zG-Rb8BaKs8k0G8Cxky1rY'
 geolocator = Nominatim()
@@ -52,6 +53,10 @@ def send_welcome(message):
 user_id = 0
 global_name = "anonymous"
 global_pizza = "cheese pizza"
+
+@bot.message_handler(commands=["order"])
+def order_when_command(message):
+   bot.reply_to(message,"Please select your Pizza",reply_markup=getPizzaMarkUp())
 
 @bot.message_handler(func = lambda message:message.text in pizza_text_list)
 def send_image_and_confirmation(message):
@@ -111,25 +116,27 @@ def reciveContact(message):
     user.contact_number = message.contact.phone_number
     session.begin()
     session.commit()
-    bot.reply_to(message,"Thanks " + message.from_user.first_name + " " + message.from_user.last_name + "\n would you like to have a Pizza ?")
+    bot.reply_to(message,"Thanks " + message.from_user.first_name + " " + message.from_user.last_name + "\n would you like to have a Pizza ?",reply_markup=getPizzaMarkUp())
 
-@bot.message_handler(func = lambda message:message.text.lower() in ["i want pizza","can i have pizza ?","can i have pizza","pizza","order pizza","pizza","pizza list"],commands=['order'])
+@bot.message_handler(func = lambda message:message.text.lower() in ["i want pizza","can i have pizza ?","can i have pizza","pizza","order pizza","pizza","pizza list"])
 def order(message):
+    print "order now"
     markup = getPizzaMarkUp()
     bot.reply_to(message,"Please select your Pizza ?",reply_markup=markup)
 
 @bot.message_handler(content_types=["location"])
 def reciveLocation(message):
+        import pdb;pdb.set_trace()
         user = session.query(User).filter_by(id=int(message.from_user.id)).first()
         if user.location == "Earth" or user.location == None:
             location_data = message.location
             location_decode = geolocator.reverse(str(location_data.latitude)+","+str(location_data.longitude))
-            user.location = str(location_decode.address)
+            user.location = location_decode.address.encode('ascii','ignore')
             user.latitude = float(location_data.latitude)
             user.longitude = float(location_data.longitude)
             session.begin()
             session.commit()
-            bot.reply_to(message,"Thanks "+message.from_user.first_name + " " + message.from_user.last_name+" your location \""+str(location_decode.address) + "\" has been added successfully")
+            bot.reply_to(message,"Thanks "+message.from_user.first_name + " " + message.from_user.last_name+" your location \""+str(user.location) + "\" has been added successfully")
             markup = types.ReplyKeyboardMarkup(selective=False)
             markup.one_time_keyboard = True
             markup.resize_keyboard = True
